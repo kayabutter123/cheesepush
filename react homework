@@ -1,0 +1,48 @@
+import React from 'react';
+import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
+
+const PersonCard = ({ name, color, age }) => {
+  return (
+    <Pressable style={[styles.card, { backgroundColor: color }]} onPress={() => alert(name + ", Age: " + age)}>
+      <Text style={styles.text}>Name: {name}</Text>
+      <Text style={styles.text}>Favourite Colour: {color}</Text>
+      <Text style={styles.text}>Age: {age}</Text>
+    </Pressable>
+  );
+};
+
+export default function App() {
+  const people = [
+    { name: 'kyal', color: 'blue', age: 25 },
+    { name: 'jamal', color: 'black', age: 30 },
+    { name: 'amir', color: 'brown', age: 53 },
+
+  ];
+
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      {people.map((person, index) => (
+        <PersonCard key={index} {...person} />
+      ))}
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  card: {
+    width: '90%',
+    padding: 20,
+    marginVertical: 10,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+});
